@@ -1,6 +1,6 @@
-import LazyLoad from 'react-lazyload';
-import Container from '../Container';
-import BgSection from '../BgSection';
+import LazyLoad from 'react-lazyload'
+import Container from '../Container'
+import BgSection from '../BgSection'
 import {
 	Date,
 	DateContainer,
@@ -14,26 +14,34 @@ import {
 	Title,
 	Wrapper,
 	WrapperImgItem,
-} from './LatestNewsElements';
-import { useEffect, useRef, useState } from 'react';
-import { useTimeout } from '../../hooks';
-import { ArrowForwardIosOutlined, EventNote, Search } from '@mui/icons-material';
-import { latestNews, line } from '../../helpers/images';
+} from './LatestNewsElements'
+import { useEffect, useRef, useState } from 'react'
+import { useTimeout } from '../../hooks'
+import { ArrowForwardIosOutlined, EventNote, Search } from '@mui/icons-material'
+import { latestNews, line } from '../../helpers/images'
+
+const items = [
+	{ image: latestNews.item1 },
+	{ image: latestNews.item2 },
+	{ image: latestNews.item3 },
+	{ image: latestNews.item4 },
+	{ image: latestNews.item5 },
+]
 
 const LatestNews = () => {
-	const totalItems = 5;
-	const itemOnScreen = useRef(3); // <= 960: 2, else 3
-	const slideNumber = totalItems - itemOnScreen.current + 1;
-	const [slide, setSlide] = useState(0);
+	const totalItems = 5
+	const itemOnScreen = useRef(3) // <= 960: 2, else 3
+	const slideNumber = totalItems - itemOnScreen.current + 1
+	const [slide, setSlide] = useState(0)
 
 	const handleClickPagination = (direction) => {
-		direction === 'left' && setSlide((slide === 0 ? slideNumber : slide) - 1);
-		direction === 'right' && setSlide((slide + 1) % slideNumber);
-	};
+		direction === 'left' && setSlide((slide === 0 ? slideNumber : slide) - 1)
+		direction === 'right' && setSlide((slide + 1) % slideNumber)
+	}
 
 	useTimeout(() => {
-		setSlide((slide + 1) % slideNumber);
-	}, 4000);
+		setSlide((slide + 1) % slideNumber)
+	}, 4000)
 
 	// useResize(() => {
 	// 	const size = window.innerWidth;
@@ -43,15 +51,15 @@ const LatestNews = () => {
 
 	useEffect(() => {
 		const a = () => {
-			const size = window.innerWidth;
-			if (size <= 600) return (itemOnScreen.current = 1);
-			if (size <= 960) return (itemOnScreen.current = 2);
-			return (itemOnScreen.current = 3);
-		};
-		a();
-		window.addEventListener('resize', a);
-		return () => window.removeEventListener('resize', a);
-	}, []);
+			const size = window.innerWidth
+			if (size <= 600) return (itemOnScreen.current = 1)
+			if (size <= 960) return (itemOnScreen.current = 2)
+			return (itemOnScreen.current = 3)
+		}
+		a()
+		window.addEventListener('resize', a)
+		return () => window.removeEventListener('resize', a)
+	}, [])
 
 	return (
 		<LazyLoad height={500} offset={100} placeholder={<div>Loadding...</div>} once>
@@ -64,57 +72,28 @@ const LatestNews = () => {
 				bgImage={latestNews.bg}
 				headerTitle='Latest News'
 				onPaginateLeftClick={() => handleClickPagination('left')}
-				onPaginateRightClick={() => handleClickPagination('right')}>
+				onPaginateRightClick={() => handleClickPagination('right')}
+			>
 				<Container>
 					<Wrapper>
 						<NewsList slide={slide}>
-							<Item
-								href='/'
-								imgSrc={latestNews.item1}
-								searchLink='/'
-								date='2020 / 12 / 31'
-								title='title'
-								desc='desc'
-							/>
-							<Item
-								href='/'
-								imgSrc={latestNews.item2}
-								searchLink='/'
-								date='2020 / 12 / 31'
-								title='title'
-								desc='desc'
-							/>
-							<Item
-								href='/'
-								imgSrc={latestNews.item3}
-								searchLink='/'
-								date='2020 / 12 / 31'
-								title='title'
-								desc='desc'
-							/>
-							<Item
-								href='/'
-								imgSrc={latestNews.item4}
-								searchLink='/'
-								date='2020 / 12 / 31'
-								title='title'
-								desc='desc'
-							/>
-							<Item
-								href='/'
-								imgSrc={latestNews.item5}
-								searchLink='/'
-								date='2020 / 12 / 31'
-								title='title'
-								desc='desc'
-							/>
+							{items.map((item, index) => (
+								<Item
+									href='/'
+									imgSrc={item.image}
+									searchLink='/'
+									date='2020 / 12 / 31'
+									title={`Product ${index + 1}`}
+									desc='Product Descriptions'
+								/>
+							))}
 						</NewsList>
 					</Wrapper>
 				</Container>
 			</BgSection>
 		</LazyLoad>
-	);
-};
+	)
+}
 
 const Item = ({ href, searchLink, imgSrc, date, title, desc }) => (
 	<NewsItem>
@@ -137,6 +116,6 @@ const Item = ({ href, searchLink, imgSrc, date, title, desc }) => (
 			<ArrowForwardIosOutlined fontSize='small' />
 		</ReadMore>
 	</NewsItem>
-);
+)
 
-export default LatestNews;
+export default LatestNews

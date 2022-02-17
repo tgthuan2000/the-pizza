@@ -1,6 +1,6 @@
-import { NavContainer, NavWrapper } from './StickyElements';
-import Container from '../../Container';
-import Logo from '../../Logo';
+import { NavContainer, NavWrapper } from './StickyElements'
+import Container from '../../Container'
+import Logo from '../../Logo'
 import {
 	BottomItemLink,
 	BottomList,
@@ -11,10 +11,10 @@ import {
 	InfoTitle,
 	SearchWrapper,
 	Wrapper,
-} from './ShowElements';
-import { SearchBig } from '../../Search';
-import { SvgIcon } from '@mui/material';
-import { ShoppingCartOutlined } from '@mui/icons-material';
+} from './ShowElements'
+import { SearchBig } from '../../Search'
+import { SvgIcon } from '@mui/material'
+import { ShoppingCartOutlined } from '@mui/icons-material'
 
 const NavbarBigSizeSticky = () => {
 	return (
@@ -23,11 +23,9 @@ const NavbarBigSizeSticky = () => {
 				<NavWrapper>
 					<Logo />
 					<BottomList>
-						<BottomItemLink to='/'>Item 1</BottomItemLink>
-						<BottomItemLink to='/'>Item 2</BottomItemLink>
-						<BottomItemLink to='/'>Item 3</BottomItemLink>
-						<BottomItemLink to='/'>Item 4</BottomItemLink>
-						<BottomItemLink to='/'>Item 5</BottomItemLink>
+						{Array.from(new Array(5)).map((item, index) => (
+							<BottomItemLink to='/'>Page {index + 1}</BottomItemLink>
+						))}
 					</BottomList>
 					<Wrapper>
 						<SearchWrapper>
@@ -38,15 +36,15 @@ const NavbarBigSizeSticky = () => {
 								<SvgIcon fontSize='large' component={ShoppingCartOutlined} />
 							</BoxIcon>
 							<BoxInfo>
-								<InfoTitle>Giỏ hàng</InfoTitle>
-								<InfoContent>Chưa có món</InfoContent>
+								<InfoTitle>Cart</InfoTitle>
+								<InfoContent>Empty</InfoContent>
 							</BoxInfo>
 						</Box>
 					</Wrapper>
 				</NavWrapper>
 			</Container>
 		</NavContainer>
-	);
-};
+	)
+}
 
-export default NavbarBigSizeSticky;
+export default NavbarBigSizeSticky

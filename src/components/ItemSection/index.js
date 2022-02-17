@@ -8,12 +8,12 @@ import {
 	Wrapper,
 	LogoWrapper,
 	ItemSectionWrapper,
-} from './ItemSectionElements';
-import Container from '../Container';
-import Logo from '../Logo';
-import { ButtonLink } from '../Button';
-import PropTypes from 'prop-types';
-import LazyLoad from 'react-lazyload';
+} from './ItemSectionElements'
+import Container from '../Container'
+import Logo from '../Logo'
+import { ButtonLink } from '../Button'
+import PropTypes from 'prop-types'
+import LazyLoad from 'react-lazyload'
 
 const ItemSection = ({ reverse, gray, image, discount, title, content }) => {
 	return (
@@ -31,14 +31,14 @@ const ItemSection = ({ reverse, gray, image, discount, title, content }) => {
 							</LogoWrapper>
 							<Title>{title}</Title>
 							<Content>{content}</Content>
-							<ButtonLink to='/'>Xem thêm</ButtonLink>
+							<ButtonLink to='/'>More</ButtonLink>
 						</ContentContainer>
 					</Wrapper>
 				</Container>
 			</ItemSectionWrapper>
 		</LazyLoad>
-	);
-};
+	)
+}
 
 ItemSection.propTypes = {
 	reverse: PropTypes.bool,
@@ -47,6 +47,6 @@ ItemSection.propTypes = {
 	discount: PropTypes.string.isRequired,
 	title: PropTypes.string,
 	content: PropTypes.string,
-};
+}
 
-export default ItemSection;
+export default ItemSection

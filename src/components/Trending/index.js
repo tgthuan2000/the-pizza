@@ -1,4 +1,4 @@
-import Container from '../Container';
+import Container from '../Container'
 import {
 	ButtonGroup,
 	ContentContainer,
@@ -12,29 +12,29 @@ import {
 	WrappImgLink,
 	WrapperTrendding,
 	ProductWrapper,
-} from './TrendingElements';
-import { ButtonIcon, TrendingButton } from '../Button';
-import LazyLoad from 'react-lazyload';
-import BgSection from '../BgSection';
-import { useState, useRef, useEffect } from 'react';
-import { line, product, trending } from '../../helpers/images';
+} from './TrendingElements'
+import { ButtonIcon, TrendingButton } from '../Button'
+import LazyLoad from 'react-lazyload'
+import BgSection from '../BgSection'
+import { useState, useRef, useEffect } from 'react'
+import { line, product, trending } from '../../helpers/images'
 import {
 	AddShoppingCartOutlined,
 	AssessmentOutlined,
 	FavoriteBorderOutlined,
 	VisibilityOutlined,
-} from '@mui/icons-material';
+} from '@mui/icons-material'
 
 const Trending = () => {
-	const totalItems = 9;
-	const itemOnScreen = useRef(4); //
-	const slideNumber = Math.ceil(totalItems / itemOnScreen.current);
-	const [slide, setSlide] = useState(0);
+	const totalItems = 9
+	const itemOnScreen = useRef(4) //
+	const slideNumber = Math.ceil(totalItems / itemOnScreen.current)
+	const [slide, setSlide] = useState(0)
 
 	const handleClickPagination = (direction) => {
-		direction === 'left' && setSlide((slide === 0 ? slideNumber : slide) - 1);
-		direction === 'right' && setSlide((slide + 1) % slideNumber);
-	};
+		direction === 'left' && setSlide((slide === 0 ? slideNumber : slide) - 1)
+		direction === 'right' && setSlide((slide + 1) % slideNumber)
+	}
 
 	// useResize(() => {
 	// 	const size = window.innerWidth;
@@ -44,16 +44,16 @@ const Trending = () => {
 	// });
 	useEffect(() => {
 		const a = () => {
-			const size = window.innerWidth;
-			if (size <= 550) return (itemOnScreen.current = 1);
-			if (size <= 744) return (itemOnScreen.current = 2);
-			if (size <= 960) return (itemOnScreen.current = 3);
-			return (itemOnScreen.current = 4);
-		};
-		a();
-		window.addEventListener('resize', a);
-		return () => window.removeEventListener('resize', a);
-	}, []);
+			const size = window.innerWidth
+			if (size <= 550) return (itemOnScreen.current = 1)
+			if (size <= 744) return (itemOnScreen.current = 2)
+			if (size <= 960) return (itemOnScreen.current = 3)
+			return (itemOnScreen.current = 4)
+		}
+		a()
+		window.addEventListener('resize', a)
+		return () => window.removeEventListener('resize', a)
+	}, [])
 
 	return (
 		<LazyLoad height={500} offset={100} placeholder={<div>Loadding...</div>} once>
@@ -66,78 +66,31 @@ const Trending = () => {
 				bgImage={trending.bg}
 				headerTitle='Trending section'
 				onPaginateLeftClick={() => handleClickPagination('left')}
-				onPaginateRightClick={() => handleClickPagination('right')}>
+				onPaginateRightClick={() => handleClickPagination('right')}
+			>
 				<TrendingButtonGroup>
-					<TrendingButton active>Feature</TrendingButton>
-					<TrendingButton>Feature</TrendingButton>
-					<TrendingButton>Feature</TrendingButton>
-					<TrendingButton>Feature</TrendingButton>
-					<TrendingButton>Feature</TrendingButton>
+					{Array.from(new Array(5)).map((x, i) => (
+						<TrendingButton active={i === 0}>Feature {i + 1}</TrendingButton>
+					))}
 				</TrendingButtonGroup>
 				<Container margin='20px auto'>
 					<WrapperTrendding>
 						<ProductList slide={slide}>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
-							<Product
-								href='/'
-								proImg={product.item1}
-								proName='product name nè'
-								proPrice='$ 123.00'
-							/>
+							{Array.from(new Array(10)).map((x, i) => (
+								<Product
+									href='/'
+									proImg={product.item1}
+									proName='product'
+									proPrice='$ 123.00'
+								/>
+							))}
 						</ProductList>
 					</WrapperTrendding>
 				</Container>
 			</BgSection>
 		</LazyLoad>
-	);
-};
+	)
+}
 
 const Product = ({
 	href = '/',
@@ -168,7 +121,7 @@ const Product = ({
 			</ContentContainer>
 		</ProductItem>
 	</ProductWrapper>
-);
+)
 
 const ButtonGroupHover = ({
 	onAddCartClick,
@@ -177,19 +130,19 @@ const ButtonGroupHover = ({
 	onOpenViewClick,
 }) => (
 	<ButtonGroup>
-		<ButtonIcon title='Thêm giỏ hàng' onClick={onAddCartClick}>
+		<ButtonIcon title='Add to cart' onClick={onAddCartClick}>
 			<AddShoppingCartOutlined fontSize='small' />
 		</ButtonIcon>
-		<ButtonIcon title='Thêm vào yêu thích' onClick={onAddFavoriteClick}>
+		<ButtonIcon title='Add to favorite' onClick={onAddFavoriteClick}>
 			<FavoriteBorderOutlined fontSize='small' />
 		</ButtonIcon>
-		<ButtonIcon title='Thêm vào so sánh' onClick={onAssessClick}>
+		<ButtonIcon title='Add to compare' onClick={onAssessClick}>
 			<AssessmentOutlined fontSize='small' />
 		</ButtonIcon>
-		<ButtonIcon title='Xem' onClick={onOpenViewClick}>
+		<ButtonIcon title='See more' onClick={onOpenViewClick}>
 			<VisibilityOutlined fontSize='small' />
 		</ButtonIcon>
 	</ButtonGroup>
-);
+)
 
-export default Trending;
+export default Trending

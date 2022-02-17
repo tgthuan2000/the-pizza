@@ -1,6 +1,6 @@
-import { Scrollbars as Scrollbar } from 'react-custom-scrollbars-2';
-import PropTypes from 'prop-types';
-import { CustomThumb, TrackHorizontal, TrackVertical } from './ScrollbarsElements';
+import { Scrollbars as Scrollbar } from 'react-custom-scrollbars-2'
+import PropTypes from 'prop-types'
+import { CustomThumb, TrackHorizontal, TrackVertical } from './ScrollbarsElements'
 
 const Scrollbars = ({
 	children,
@@ -11,7 +11,7 @@ const Scrollbars = ({
 	size = 'medium',
 	padding,
 }) => {
-	const thumbStyle = ({ style, ...props }) => <CustomThumb {...props} styled={style} />;
+	const thumbStyle = ({ style, ...props }) => <CustomThumb {...props} styled={style} />
 	return (
 		<Scrollbar
 			onScroll={onScroll}
@@ -34,8 +34,8 @@ const Scrollbars = ({
 		>
 			{children}
 		</Scrollbar>
-	);
-};
+	)
+}
 
 Scrollbars.propTypes = {
 	maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -43,6 +43,6 @@ Scrollbars.propTypes = {
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
 	thumbSize: PropTypes.number,
 	onScroll: PropTypes.func,
-};
+}
 
-export default Scrollbars;
+export default Scrollbars
